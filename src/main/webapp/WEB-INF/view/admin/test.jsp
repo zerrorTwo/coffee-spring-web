@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    init project
+    init project update
 </body>
 
 </html>
