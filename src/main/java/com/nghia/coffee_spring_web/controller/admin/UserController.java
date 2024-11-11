@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,15 +46,10 @@ public class UserController {
     public String createUserPage(Model model, @ModelAttribute("newUser") @Valid User user,
             BindingResult bindingResult, @RequestParam("userFile") MultipartFile file) {
 
-        List<FieldError> errors = bindingResult.getFieldErrors();
-        for (FieldError error : errors) {
-            System.out.println(error.getField() + " - " + error.getDefaultMessage());
-        }
         // Validate
         if (bindingResult.hasErrors()) {
             return "/admin/user/create";
         }
-
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
         // String password = this.passwordEncoder.encode(hoidanit.getPassword());
         user.setAvatar(avatar);
@@ -68,18 +62,39 @@ public class UserController {
     @GetMapping("/admin/user/update/{id}")
     public String getUpdateUserPage(Model model, @PathVariable long id) {
         User user = this.userService.getUserById(id);
+        user.setPassword("");
         model.addAttribute("newUser", user);
         return "admin/user/update";
     }
 
     @PostMapping(value = "/admin/user/update")
-    public String updateUserPage(Model model, @ModelAttribute("newUser") User userForm) {
-        User user = this.userService.getUserById(userForm.getId());
-        if (user != null) {
-            user.setFullName(userForm.getFullName());
-            user.setAddress(userForm.getAddress());
-            user.setPhone(userForm.getPhone());
-            this.userService.handleSaveAUser(user);
+    public String updateUserPage(@ModelAttribute("newUser") @Valid User newUser,
+            BindingResult bindingResult) {
+        // validate
+        if (bindingResult.hasErrors()) {
+            return "admin/user/update";
+        }
+
+        User existingUser = this.userService.getUserById(newUser.getId());
+
+        if (existingUser != null) {
+            // Update Email (nếu có)
+            existingUser.setEmail(newUser.getEmail() != null ? newUser.getEmail() : existingUser.getEmail());
+
+            // Nếu `password` rỗng
+            if (newUser.getPassword() == null || newUser.getPassword().isEmpty()) {
+                newUser.setPassword(existingUser.getPassword()); // Giữ lại mật khẩu cũ
+            } else {
+                existingUser.setPassword(newUser.getPassword()); // Cập nhật mới (nếu có)
+            }
+
+            existingUser.setFullName(newUser.getFullName());
+            existingUser.setAddress(newUser.getAddress());
+            existingUser.setPhone(newUser.getPhone());
+
+            this.userService.handleSaveAUser(existingUser);
+        } else {
+            return "redirect:/admin/user";
         }
         return "redirect:/admin/user";
     }

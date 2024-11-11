@@ -34,7 +34,6 @@ public class Product {
     private long quantity;
 
     private long sold;
-    private String factory;
 
     public long getId() {
         return id;
@@ -92,19 +91,10 @@ public class Product {
         this.sold = sold;
     }
 
-    public String getFactory() {
-        return factory;
-    }
-
-    public void setFactory(String factory) {
-        this.factory = factory;
-    }
-
     @Override
     public String toString() {
         return "Product [id=" + id + ", name=" + name + ", price=" + price + ", image=" + image
-                + ", shortDesc=" + shortDesc + ", quantity=" + quantity + ", sold=" + sold + ", factory="
-                + factory + "]";
+                + ", shortDesc=" + shortDesc + ", quantity=" + quantity + ", sold=" + sold + "]";
     }
 
 }
