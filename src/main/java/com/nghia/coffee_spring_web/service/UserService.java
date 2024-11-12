@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.nghia.coffee_spring_web.domain.Role;
 import com.nghia.coffee_spring_web.domain.User;
+import com.nghia.coffee_spring_web.domain.dto.RegisterDTO;
 import com.nghia.coffee_spring_web.repository.RoleRepository;
 import com.nghia.coffee_spring_web.repository.UserRepository;
 
@@ -39,5 +40,22 @@ public class UserService {
 
     public void deleteAUser(long id) {
         this.userRepository.deleteById(id);
+    }
+
+    // Mapper Class, transfer object
+    public User registerDTOtoUser(RegisterDTO registerDTO) {
+        User user = new User();
+        user.setFullName(registerDTO.getFirstName() + " " + registerDTO.getLastName());
+        user.setEmail(registerDTO.getEmail());
+        user.setPassword(registerDTO.getPassword());
+        return user;
+    }
+
+    public boolean checkEmailExist(String email) {
+        return this.userRepository.existsByEmail(email);
+    }
+
+    public User getUserByEmail(String email) {
+        return this.userRepository.findByEmail(email);
     }
 }
