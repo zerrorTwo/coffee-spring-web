@@ -94,6 +94,7 @@ public class UserController {
             }
 
             existingUser.setFullName(newUser.getFullName());
+
             existingUser.setAddress(newUser.getAddress());
             existingUser.setPhone(newUser.getPhone());
 
