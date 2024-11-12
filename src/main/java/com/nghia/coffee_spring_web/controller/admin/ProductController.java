@@ -52,15 +52,14 @@ public class ProductController {
         return "admin/product/create";
     }
 
-    @PostMapping(value = "/admin/product/create")
-    public String createProductPage(Model model, @ModelAttribute("newProduct") @Valid Product product,
+    @PostMapping("/admin/product/create")
+    public String createProductPage(@ModelAttribute("newProduct") @Valid Product product,
             BindingResult bindingResult, @RequestParam("productFile") MultipartFile file) {
         // Validate
         if (bindingResult.hasErrors()) {
             return "/admin/product/create";
         }
         String image = this.uploadService.handleSaveUploadFile(file, "product");
-        // String password = this.passwordEncoder.encode(hoidanit.getPassword());
         product.setImage(image);
 
         this.productService.handleSaveAProduct(product);
@@ -75,7 +74,7 @@ public class ProductController {
         return "admin/product/update";
     }
 
-    @PostMapping(value = "/admin/product/update")
+    @PostMapping("/admin/product/update")
     public String updateProductPage(@ModelAttribute("newProduct") @Valid Product product,
             BindingResult bindingResult, @RequestParam("productFile") MultipartFile file) {
         // validate

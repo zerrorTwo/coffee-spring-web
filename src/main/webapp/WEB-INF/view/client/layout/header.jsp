@@ -24,7 +24,7 @@
                                     <span
                                         class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
                                         style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
-                                        <!-- ${sessionScope.sum} -->
+                                        ${sessionScope.sum}
                                     </span>
                                 </a>
                                 <div class="dropdown my-auto">
@@ -37,7 +37,7 @@
                                     <ul class="dropdown-menu dropdown-menu-end p-4" aria-labelledby="dropdownMenuLink">
                                         <li class="d-flex align-items-center flex-column" style="min-width: 300px;">
                                             <img style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden;"
-                                                src="/admin/images/avatar/${sessionScope.avatar}" />
+                                                src="/client/images/avatar/${sessionScope.avatar}" />
                                             <div class="text-center my-3">
                                                 <c:out value="${sessionScope.fullName}" />
                                             </div>
@@ -51,8 +51,8 @@
                                         </li>
                                         <li>
                                             <form method="post" action="/logout">
-                                                <!-- <input type="hidden" name="${_csrf.parameterName}"
-                                                    value="${_csrf.token}" /> -->
+                                                <input type="hidden" name="${_csrf.parameterName}"
+                                                    value="${_csrf.token}" />
                                                 <button class="dropdown-item">Đăng xuất</button>
                                             </form>
                                         </li>

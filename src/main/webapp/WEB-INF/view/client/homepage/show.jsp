@@ -77,7 +77,7 @@
                                                     <div class="col-md-6 col-lg-4 col-xl-3">
                                                         <div class="rounded position-relative fruite-item">
                                                             <div class="fruite-img">
-                                                                <img src="/admin/images/product/${product.image}"
+                                                                <img src="/client/images/product/${product.image}"
                                                                     class="img-fluid w-100 rounded-top"
                                                                     alt="coffee-item"
                                                                     style="height: 296px; width: 296px;">
@@ -99,9 +99,9 @@
                                                                     </p>
                                                                     <form action="/add-product-to-cart/${product.id}"
                                                                         method="post">
-                                                                        <!-- <input type="hidden"
+                                                                        <input type="hidden"
                                                                             name="${_csrf.parameterName}"
-                                                                            value="${_csrf.token}" /> -->
+                                                                            value="${_csrf.token}" />
 
                                                                         <button
                                                                             class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"><i
@@ -127,11 +127,9 @@
 
                 <jsp:include page="../layout/footer.jsp" />
 
-
                 <!-- Back to Top -->
                 <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
                         class="fa fa-arrow-up"></i></a>
-
 
                 <!-- JavaScript Libraries -->
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>

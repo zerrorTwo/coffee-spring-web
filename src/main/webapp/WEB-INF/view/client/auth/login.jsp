@@ -38,7 +38,7 @@
                                                     </c:if>
                                                     <div class="form-floating mb-3">
                                                         <input class="form-control" type="email"
-                                                            placeholder="name@gmail.com" name="username" />
+                                                            placeholder="name@example.com" name="username" />
                                                         <label>Email address</label>
                                                     </div>
                                                     <div class="form-floating mb-3">
@@ -46,10 +46,10 @@
                                                             placeholder="Password" name="password" />
                                                         <label>Password</label>
                                                     </div>
-                                                    <!-- <div>
+                                                    <div>
                                                         <input type="hidden" name="${_csrf.parameterName}"
                                                             value="${_csrf.token}" />
-                                                    </div> -->
+                                                    </div>
                                                     <div class="mt-4 mb-0">
                                                         <div class="d-grid">
                                                             <button class="btn btn-primary btn-block">

@@ -67,12 +67,11 @@ public class UserController {
     @GetMapping("/admin/user/update/{id}")
     public String getUpdateUserPage(Model model, @PathVariable long id) {
         User user = this.userService.getUserById(id);
-        user.setPassword("");
         model.addAttribute("newUser", user);
         return "admin/user/update";
     }
 
-    @PostMapping(value = "/admin/user/update")
+    @PostMapping("/admin/user/update")
     public String updateUserPage(@ModelAttribute("newUser") @Valid User newUser,
             BindingResult bindingResult) {
         // validate

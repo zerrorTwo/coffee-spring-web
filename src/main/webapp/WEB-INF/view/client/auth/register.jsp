@@ -62,7 +62,7 @@
                                                     <div class="form-floating mb-3">
                                                         <form:input
                                                             class="form-control ${not empty errorEmail ? 'is-invalid' : ''}"
-                                                            type="email" placeholder="name@gmail.com" path="email" />
+                                                            type="email" placeholder="name@example.com" path="email" />
                                                         <label>Email address</label>
                                                         ${errorEmail}
                                                     </div>
