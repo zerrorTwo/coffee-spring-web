@@ -7,10 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.nghia.coffee_spring_web.domain.Cart;
 import com.nghia.coffee_spring_web.domain.CartDetail;
+import com.nghia.coffee_spring_web.domain.Order;
+import com.nghia.coffee_spring_web.domain.OrderDetail;
 import com.nghia.coffee_spring_web.domain.Product;
 import com.nghia.coffee_spring_web.domain.User;
 import com.nghia.coffee_spring_web.repository.CartDetailRepository;
 import com.nghia.coffee_spring_web.repository.CartRepository;
+import com.nghia.coffee_spring_web.repository.OrderDetailRepository;
+import com.nghia.coffee_spring_web.repository.OrderRepository;
 import com.nghia.coffee_spring_web.repository.ProductRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -21,16 +25,22 @@ public class ProductService {
     private final CartRepository cartRepository;
     private final CartDetailRepository cartDetailRepository;
     private final UserService userService;
+    private final OrderRepository orderRepository;
+    private final OrderDetailRepository orderDetailRepository;
 
     public ProductService(
             ProductRepository productRepository,
             CartRepository cartRepository,
             CartDetailRepository cartDetailRepository,
-            UserService userService) {
+            UserService userService,
+            OrderRepository orderRepository,
+            OrderDetailRepository orderDetailRepository) {
         this.productRepository = productRepository;
         this.cartRepository = cartRepository;
         this.cartDetailRepository = cartDetailRepository;
         this.userService = userService;
+        this.orderRepository = orderRepository;
+        this.orderDetailRepository = orderDetailRepository;
     }
 
     public List<Product> findAllProduct() {
@@ -133,6 +143,49 @@ public class ProductService {
                 CartDetail currentCartDetail = cdOptional.get();
                 currentCartDetail.setQuantity(cartDetail.getQuantity());
                 this.cartDetailRepository.save(currentCartDetail);
+            }
+        }
+    }
+
+    public void handlePlaceOrder(
+            User user, HttpSession session,
+            String receiverName, String receiverAddress, String receiverPhone) {
+
+        // create order
+        Order order = new Order();
+        order.setUser(user);
+        order.setReceiverName(receiverName);
+        order.setReceiverAddress(receiverAddress);
+        order.setReceiverPhone(receiverPhone);
+        order = this.orderRepository.save(order);
+
+        // create orderDetail
+
+        // step 1: get cart by user
+        Cart cart = this.cartRepository.findByUser(user);
+        if (cart != null) {
+            List<CartDetail> cartDetails = cart.getCartDetails();
+
+            if (cartDetails != null) {
+                for (CartDetail cd : cartDetails) {
+                    OrderDetail orderDetail = new OrderDetail();
+                    orderDetail.setOrder(order);
+                    orderDetail.setProduct(cd.getProduct());
+                    orderDetail.setPrice(cd.getPrice());
+                    orderDetail.setQuantity(cd.getQuantity());
+
+                    this.orderDetailRepository.save(orderDetail);
+                }
+
+                // step 2: delete cart_detail and cart
+                for (CartDetail cd : cartDetails) {
+                    this.cartDetailRepository.deleteById(cd.getId());
+                }
+
+                this.cartRepository.deleteById(cart.getId());
+
+                // step 3 : update session
+                session.setAttribute("sum", 0);
             }
         }
     }
