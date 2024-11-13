@@ -37,7 +37,7 @@
                                     <ul class="dropdown-menu dropdown-menu-end p-4" aria-labelledby="dropdownMenuLink">
                                         <li class="d-flex align-items-center flex-column" style="min-width: 300px;">
                                             <img style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden;"
-                                                src="/client/images/avatar/${sessionScope.avatar}" />
+                                                src="/images/avatar/${sessionScope.avatar}" />
                                             <div class="text-center my-3">
                                                 <c:out value="${sessionScope.fullName}" />
                                             </div>

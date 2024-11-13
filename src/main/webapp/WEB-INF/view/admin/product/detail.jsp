@@ -11,7 +11,7 @@
                 <meta name="description" content="DN Coffee" />
                 <meta name="author" content="DN Coffee" />
                 <title>Detail Product - DN Coffee</title>
-                <link href="/admin/css/styles.css" rel="stylesheet" />
+                <link href="/css/styles.css" rel="stylesheet" />
 
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
@@ -38,7 +38,7 @@
                                             <hr />
                                             <div class="card" style="width: 60%">
                                                 <img class="card-img-top" style="width: 50%; height: 50%;"
-                                                    src="/admin/images/product/${product.image}" alt="Card image cap">
+                                                    src="/images/product/${product.image}" alt="Card image cap">
 
                                                 <div class="card-header">
                                                     Product information
@@ -62,7 +62,7 @@
                 </div>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
                     crossorigin="anonymous"></script>
-                <script src="/admin/js/scripts.js"></script>
+                <script src="/js/scripts.js"></script>
             </body>
 
             </html>
