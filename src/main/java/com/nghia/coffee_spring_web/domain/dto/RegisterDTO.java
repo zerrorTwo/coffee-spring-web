@@ -1,8 +1,11 @@
 package com.nghia.coffee_spring_web.domain.dto;
 
+import com.nghia.coffee_spring_web.service.validator.RegisterChecked;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 
+@RegisterChecked
 public class RegisterDTO {
     @Size(min = 3, message = "FirstName phải có tối thiểu 3 ký tự")
     private String firstName;
