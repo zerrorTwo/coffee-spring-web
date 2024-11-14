@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.nghia.coffee_spring_web.domain.Order;
 import com.nghia.coffee_spring_web.domain.OrderDetail;
+import com.nghia.coffee_spring_web.domain.User;
 import com.nghia.coffee_spring_web.repository.OrderDetailRepository;
 import com.nghia.coffee_spring_web.repository.OrderRepository;
 
@@ -52,4 +53,9 @@ public class OrderService {
             this.orderRepository.save(currentOrder);
         }
     }
+
+    public List<Order> fetchOrderByUser(User user) {
+        return this.orderRepository.findByUser(user);
+    }
+
 }
