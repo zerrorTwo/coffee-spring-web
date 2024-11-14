@@ -56,7 +56,8 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Chi tiết sản phẩm</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Chi Tiết Sản Phẩm
+                                        </li>
                                     </ol>
                                 </nav>
                             </div>
@@ -71,7 +72,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
-                                        <h4 class="fw-bold mb-3">${product.name}</h4>
+                                        <h4 class="fw-bold mb-3"> ${product.name}</h4>
                                         <h5 class="fw-bold mb-3">
                                             <fmt:formatNumber type="number" value="${product.price}" /> đ
                                         </h5>
@@ -93,81 +94,29 @@
                                                 </button>
                                             </div>
                                             <input type="text" class="form-control form-control-sm text-center border-0"
-                                                value="1">
+                                                value="1" data-cart-detail-index="0">
                                             <div class="input-group-btn">
                                                 <button class="btn btn-sm btn-plus rounded-circle bg-light border">
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
                                         </div>
-                                        <a href="#"
-                                            class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
-                                                class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                                    </div>
-                                    <div class="col-lg-12">
+                                        <form action="/add-product-from-view-detail" method="post"
+                                            modelAttribute="product">
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                            <input class="form-control d-none" type="text" value="${product.id}"
+                                                name="id" />
 
-                                        <div class="tab-content mb-5">
-                                            <div class="tab-pane" id="nav-mission" role="tabpanel"
-                                                aria-labelledby="nav-mission-tab">
-                                                <div class="d-flex">
-                                                    <img src="/client/img/avatar.jpg"
-                                                        class="img-fluid rounded-circle p-3"
-                                                        style="width: 100px; height: 100px;" alt="">
-                                                    <div class="">
-                                                        <p class="mb-2" style="font-size: 14px;">Eleven 12, 2024</p>
-                                                        <div class="d-flex justify-content-between">
-                                                            <h5>Jason Smith</h5>
-                                                            <div class="d-flex mb-3">
-                                                                <i class="fa fa-star text-secondary"></i>
-                                                                <i class="fa fa-star text-secondary"></i>
-                                                                <i class="fa fa-star text-secondary"></i>
-                                                                <i class="fa fa-star text-secondary"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                        <p>The generated Lorem Ipsum is therefore always free from
-                                                            repetition injected humour, or non-characteristic
-                                                            words etc. Susp endisse ultricies nisi vel quam suscipit
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <img src="/client/img/avatar.jpg"
-                                                        class="img-fluid rounded-circle p-3"
-                                                        style="width: 100px; height: 100px;" alt="">
-                                                    <div class="">
-                                                        <p class="mb-2" style="font-size: 14px;">Eleven 12, 2024</p>
-                                                        <div class="d-flex justify-content-between">
-                                                            <h5>Sam Peters</h5>
-                                                            <div class="d-flex mb-3">
-                                                                <i class="fa fa-star text-secondary"></i>
-                                                                <i class="fa fa-star text-secondary"></i>
-                                                                <i class="fa fa-star text-secondary"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                        <p class="text-dark">The generated Lorem Ipsum is therefore
-                                                            always
-                                                            free from repetition injected humour, or non-characteristic
-                                                            words etc. Susp endisse ultricies nisi vel quam suscipit
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane" id="nav-vision" role="tabpanel">
-                                                <p class="text-dark">Tempor erat elitr rebum at clita. Diam dolor diam
-                                                    ipsum
-                                                    et tempor sit. Aliqu diam
-                                                    amet diam et eos labore. 3</p>
-                                                <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet
-                                                    diam et
-                                                    eos labore.
-                                                    Clita erat ipsum et lorem et sit</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            <input class="form-control d-none" type="text" name="quantity"
+                                                id="cartDetails0.quantity" />
+                                            <button
+                                                class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
+                                                    class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                Add to cart
+                                            </button>
+                                        </form>
 
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-xl-3">
