@@ -2,6 +2,8 @@ package com.nghia.coffee_spring_web.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.nghia.coffee_spring_web.domain.Role;
@@ -29,8 +31,8 @@ public class UserService {
         this.orderRepository = orderRepository;
     }
 
-    public List<User> findAllUser() {
-        return this.userRepository.findAll();
+    public Page<User> getAllUsers(Pageable page) {
+        return this.userRepository.findAll(page);
     }
 
     public Role getRoleByName(String name) {
