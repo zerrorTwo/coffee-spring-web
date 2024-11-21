@@ -37,6 +37,21 @@
                     <link href="/client/css/style.css" rel="stylesheet">
 
                     <link href="/client/css/custom.css" rel="stylesheet">
+
+                    <meta name="_csrf" content="${_csrf.token}" />
+                    <!-- default header name is X-CSRF-TOKEN -->
+                    <meta name="_csrf_header" content="${_csrf.headerName}" />
+
+                    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+                        rel="stylesheet">
+
+                    <style>
+                        .page-link.disabled {
+                            color: var(--bs-pagination-disabled-color);
+                            pointer-events: none;
+                            background-color: var(--bs-pagination-disabled-bg);
+                        }
+                    </style>
                 </head>
 
                 <body>
@@ -76,7 +91,7 @@
                                                                 class="img-fluid w-100 rounded-top" alt="coffee-item">
                                                         </div>
                                                         <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                                            style="top: 10px; left: 10px;">Laptop
+                                                            style="top: 10px; left: 10px;">Coffee
                                                         </div>
                                                         <div
                                                             class="p-4 border border-secondary border-top-0 rounded-bottom">
@@ -96,36 +111,47 @@
                                                                         value="${product.price}" />
                                                                     đ
                                                                 </p>
-                                                                <form action="/add-product-to-cart/${product.id}"
+                                                                <!-- <form action="/add-product-to-cart/${product.id}"
                                                                     method="post">
                                                                     <input type="hidden" name="${_csrf.parameterName}"
-                                                                        value="${_csrf.token}" />
+                                                                        value="${_csrf.token}" /> -->
 
-                                                                    <button
-                                                                        class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                                            class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                                        Add to cart
-                                                                    </button>
-                                                                </form>
+                                                                <button data-product-id="${product.id}"
+                                                                    class="btnAddToCartHomepage mx-auto btn border border-secondary rounded-pill px-3 text-primary"><i
+                                                                        class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                                    Add to cart
+                                                                </button>
+                                                                <!-- </form> -->
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </c:forEach>
                                             <c:if test="${totalPages > 0}">
-                                                <div class="col-12">
-                                                    <div class="pagination d-flex justify-content-center mt-5">
+                                                <div class="pagination d-flex justify-content-center mt-5">
+                                                    <li class="page-item">
+                                                        <a class="${1 eq currentPage ? 'disabled page-link' : 'page-link'}"
+                                                            href="/products?page=${currentPage - 1}${queryString}"
+                                                            aria-label="Previous">
+                                                            <span aria-hidden="true">&laquo;</span>
+                                                        </a>
+                                                    </li>
+                                                    <c:forEach begin="0" end="${totalPages - 1}" varStatus="loop">
+                                                        <li class="page-item">
+                                                            <a class="${(loop.index + 1) eq currentPage ? 'active page-link' : 'page-link'}"
+                                                                href="/products?page=${loop.index + 1}${queryString}">
+                                                                ${loop.index + 1}
+                                                            </a>
+                                                        </li>
+                                                    </c:forEach>
+                                                    <li class="page-item">
+                                                        <a class="${totalPages eq currentPage ? 'disabled page-link' : 'page-link'}"
+                                                            href="/products?page=${currentPage + 1}${queryString}"
+                                                            aria-label="Next">
+                                                            <span aria-hidden="true">&raquo;</span>
+                                                        </a>
+                                                    </li>
 
-                                                        <a href="?page=${currentPage > 1 ? currentPage - 1 : 1}${url}"
-                                                            class="rounded ${currentPage == 1 ? 'disabled' : ''}">&laquo;</a>
-                                                        <c:forEach var="page" begin="1" end="${totalPages}">
-                                                            <!-- khi người dùng nhấn page nào thì nó sẽ active(màu xanh) -->
-                                                            <a class="rounded ${page == currentPage ? 'active' : ''}"
-                                                                href="?${url}&page=${page}">${page}</a>
-                                                        </c:forEach>
-                                                        <a href="?page=${currentPage < totalPages ? currentPage + 1 : totalPages}${url}"
-                                                            class="rounded ${currentPage == totalPages ? 'disabled' : ''}">&raquo;</a>
-                                                    </div>
                                                 </div>
                                             </c:if>
                                         </div>
@@ -154,6 +180,8 @@
 
                     <!-- Template Javascript -->
                     <script src="/client/js/main.js"></script>
+                    <script
+                        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
                 </body>
 
                 </html>

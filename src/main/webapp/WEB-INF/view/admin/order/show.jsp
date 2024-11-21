@@ -70,32 +70,44 @@
 
                                                 </tbody>
                                             </table>
-                                            <nav aria-label="Page navigation example">
-                                                <ul class="pagination justify-content-center">
-                                                    <li class="page-item">
-                                                        <a class="${1 eq currentPage ? 'disabled page-link' : 'page-link'}"
-                                                            href="/admin/order?page=${currentPage - 1}"
-                                                            aria-label="Previous">
-                                                            <span aria-hidden="true">&laquo;</span>
-                                                        </a>
-                                                    </li>
-                                                    <c:forEach begin="0" end="${totalPages - 1}" varStatus="loop">
+                                            <c:if test="${totalPages > 0}">
+                                                <nav aria-label="Page navigation example">
+                                                    <ul class="pagination justify-content-center">
+                                                        <!-- Nút Previous -->
                                                         <li class="page-item">
-                                                            <a class="${(loop.index + 1) eq currentPage ? 'active page-link' : 'page-link'}"
-                                                                href="/admin/order?page=${loop.index + 1}">
-                                                                ${loop.index + 1}
+                                                            <a class="${1 eq currentPage ? 'disabled page-link' : 'page-link'}"
+                                                                href="/admin/order?page=${currentPage - 1}"
+                                                                aria-label="Previous">
+                                                                <span aria-hidden="true">&laquo;</span>
                                                             </a>
                                                         </li>
-                                                    </c:forEach>
-                                                    <li class="page-item">
-                                                        <a class="${totalPages eq currentPage ? 'disabled page-link' : 'page-link'}"
-                                                            href="/admin/order?page=${currentPage + 1}"
-                                                            aria-label="Next">
-                                                            <span aria-hidden="true">&raquo;</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
+
+                                                        <!-- Lặp qua các trang -->
+                                                        <c:forEach begin="0" end="${totalPages - 1}" varStatus="loop">
+                                                            <li class="page-item">
+                                                                <a class="${(loop.index + 1) eq currentPage ? 'active page-link' : 'page-link'}"
+                                                                    href="/admin/order?page=${loop.index + 1}">
+                                                                    ${loop.index + 1}
+                                                                </a>
+                                                            </li>
+                                                        </c:forEach>
+
+                                                        <!-- Nút Next -->
+                                                        <li class="page-item">
+                                                            <a class="${totalPages eq currentPage ? 'disabled page-link' : 'page-link'}"
+                                                                href="/admin/order?page=${currentPage + 1}"
+                                                                aria-label="Next">
+                                                                <span aria-hidden="true">&raquo;</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                            </c:if>
+
+                                            <!-- Nếu không có trang -->
+                                            <c:if test="${totalPages == 0}">
+                                                <p class="text-center">No orders available.</p>
+                                            </c:if>
                                         </div>
 
                                     </div>
