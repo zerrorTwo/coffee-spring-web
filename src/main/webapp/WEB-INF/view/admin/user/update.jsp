@@ -34,49 +34,30 @@
                                             <hr />
                                             <form:form action="/admin/user/update" method="post" class="row"
                                                 modelAttribute="newUser">
-                                                <c:set var="errorPhone">
-                                                    <form:errors path="phone" cssClass="invalid-feedback" />
-                                                </c:set>
-                                                <c:set var="errorFullName">
-                                                    <form:errors path="fullName" cssClass="invalid-feedback" />
-                                                </c:set>
-                                                <c:set var="errorAddress">
-                                                    <form:errors path="address" cssClass="invalid-feedback" />
-                                                </c:set>
-                                                <div class="mb-3 col-12 col-md-6" style="display: none;">
-                                                    <label class="form-label">Id:</label>
-                                                    <form:input type="text" class="form-control" path="id"
-                                                        value="${newUser.id}" />
+                                                <div style="display: none;">
+                                                    <form:input type="text" id="id" class="form-control form-control-lg"
+                                                        path="id" />
                                                 </div>
                                                 <div class="mb-3 col-12 col-md-6">
-                                                    <label class="form-label">Email
-                                                        address</label>
-                                                    <form:input type="email" path="email" class="form-control"
-                                                        readonly="true" />
-                                                </div>
-                                                <div class="mb-3 col-12 col-md-6" style="display: none;"> <label
-                                                        class="form-label">Password</label>
-                                                    <form:input type="password" path="password" class="form-control" />
+                                                    <label class="form-label" for="email">Email</label>
+                                                    <form:input type="email" id="firstName"
+                                                        class="form-control form-control-lg" path="email" />
                                                 </div>
                                                 <div class="mb-3 col-12 col-md-6">
-                                                    <label class="form-label">Phone
-                                                        Number</label>
-                                                    <form:input type="text" path="phone" class="form-control
-                                                    ${not empty errorPhone ? 'is-invalid' : ''}" />
-                                                    ${errorPhone}
+                                                    <label class="form-label" for="phoneNumber">Phone Number</label>
+                                                    <form:input type="text" id="phoneNumber"
+                                                        class="form-control form-control-lg" path="phone" />
                                                 </div>
                                                 <div class="mb-3 col-12 col-md-6">
-                                                    <label class="form-label">Full
+                                                    <label class="form-label" for="fullName">Full
                                                         Name</label>
-                                                    <form:input type="text" path="fullName" class="form-control
-                                                    ${not empty errorFullName ? 'is-invalid' : ''}" />
-                                                    ${errorFullName}
+                                                    <form:input type="text" id="lastName"
+                                                        class="form-control form-control-lg" path="fullName" />
                                                 </div>
                                                 <div class="mb-3 col-12 col-md-6">
-                                                    <label class="form-label">Address</label>
-                                                    <form:input type="text" path="address" class="form-control
-                                                    ${not empty errorAddress ? 'is-invalid' : ''}" />
-                                                    ${errorAddress}
+                                                    <label for="address" class="form-label">Address</label>
+                                                    <form:input type="text" class="form-control form-control-lg"
+                                                        path="address" />
                                                 </div>
                                                 <div class="col-12 mb-5">
                                                     <button type="submit" class="btn btn-warning">Update</button>

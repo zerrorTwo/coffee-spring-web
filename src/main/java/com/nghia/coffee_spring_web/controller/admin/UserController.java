@@ -75,7 +75,7 @@ public class UserController {
 
         // Validate
         if (bindingResult.hasErrors()) {
-            return "/admin/user/create";
+            return "admin/user/create";
         }
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
@@ -96,7 +96,7 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/update")
-    public String updateUserPage(@ModelAttribute("newUser") @Valid User newUser,
+    public String updateUserPage(@ModelAttribute("newUser") User newUser,
             BindingResult bindingResult) {
         // validate
         if (bindingResult.hasErrors()) {
@@ -106,24 +106,12 @@ public class UserController {
         User existingUser = this.userService.getUserById(newUser.getId());
 
         if (existingUser != null) {
-            // Update Email (nếu có)
-            existingUser.setEmail(newUser.getEmail() != null ? newUser.getEmail() : existingUser.getEmail());
-
-            // Nếu `password` rỗng
-            if (newUser.getPassword() == null || newUser.getPassword().isEmpty()) {
-                newUser.setPassword(existingUser.getPassword()); // Giữ lại mật khẩu cũ
-            } else {
-                existingUser.setPassword(newUser.getPassword()); // Cập nhật mới (nếu có)
-            }
-
             existingUser.setFullName(newUser.getFullName());
 
             existingUser.setAddress(newUser.getAddress());
             existingUser.setPhone(newUser.getPhone());
 
             this.userService.handleSaveAUser(existingUser);
-        } else {
-            return "redirect:/admin/user";
         }
         return "redirect:/admin/user";
     }

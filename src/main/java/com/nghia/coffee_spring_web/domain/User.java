@@ -22,7 +22,8 @@ public class User {
     @NotNull
     @Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
-
+    @NotNull
+    @Size(min = 3, message = "password phải tối thiểu 3 kí tự")
     private String password;
 
     @NotNull
