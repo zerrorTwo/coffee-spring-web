@@ -19,7 +19,10 @@ import com.nghia.coffee_spring_web.domain.Cart;
 import com.nghia.coffee_spring_web.domain.CartDetail;
 import com.nghia.coffee_spring_web.domain.Product;
 import com.nghia.coffee_spring_web.domain.User;
+import com.nghia.coffee_spring_web.service.EmailService;
+import com.nghia.coffee_spring_web.service.OrderService;
 import com.nghia.coffee_spring_web.service.ProductService;
+import com.nghia.coffee_spring_web.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -28,9 +31,14 @@ import jakarta.servlet.http.HttpSession;
 public class ItemController {
 
     private final ProductService productService;
+    private final OrderService orderService;
+    private final UserService userService;
 
-    public ItemController(ProductService productService) {
+    public ItemController(ProductService productService, EmailService emailService, OrderService orderService,
+            UserService userService) {
         this.productService = productService;
+        this.orderService = orderService;
+        this.userService = userService;
     }
 
     @GetMapping("/product/{id}")
@@ -119,20 +127,27 @@ public class ItemController {
             HttpServletRequest request,
             @RequestParam("receiverName") String receiverName,
             @RequestParam("receiverAddress") String receiverAddress,
-            @RequestParam("receiverPhone") String receiverPhone) {
-        User currentUser = new User();// null
-        HttpSession session = request.getSession(false);
-        long id = (long) session.getAttribute("id");
-        currentUser.setId(id);
+            @RequestParam("receiverPhone") String receiverPhone,
+            Model model) {
+        try {
+            HttpSession session = request.getSession(false);
+            long id = (long) session.getAttribute("id");
+            User currentUser = this.userService.getUserById(id);
 
-        this.productService.handlePlaceOrder(currentUser, session, receiverName, receiverAddress, receiverPhone);
+            // Xử lý đặt hàng
+            this.productService.handlePlaceOrder(currentUser, session, receiverName,
+                    receiverAddress, receiverPhone);
 
-        return "redirect:/thanks";
+            return "redirect:/thanks";
+
+        } catch (Exception e) {
+            model.addAttribute("error", "Đã xảy ra lỗi khi xử lý đơn hàng: " + e.getMessage());
+            return "client/cart/order-error";
+        }
     }
 
     @GetMapping("/thanks")
     public String getThankYouPage(Model model) {
-
         return "client/cart/thanks";
     }
 

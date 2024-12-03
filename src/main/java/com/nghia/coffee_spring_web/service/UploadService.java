@@ -22,6 +22,7 @@ public class UploadService {
         if (file.isEmpty()) {
             return "";
         }
+        // return folder webapp
         String rootPath = this.servletContext.getRealPath("/resources/images");
         String finalName = "";
         try {
