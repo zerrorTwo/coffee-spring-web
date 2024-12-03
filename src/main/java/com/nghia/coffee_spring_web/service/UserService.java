@@ -81,4 +81,16 @@ public class UserService {
     public long countOrders() {
         return this.orderRepository.count();
     }
+
+    // Phương thức để cập nhật trạng thái confirmEmail
+    public boolean verifyEmail(String email) {
+        User user = this.userRepository.findByEmail(email);
+        if (user != null) {
+            user.setConfirmEmail(true);
+            this.userRepository.save(user);
+            return true;
+        }
+        return false;
+    }
+
 }

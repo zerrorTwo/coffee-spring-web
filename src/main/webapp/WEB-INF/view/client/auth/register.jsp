@@ -13,6 +13,56 @@
                 <title>Register - DN Coffee</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+                <style>
+                    .toast-container {
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        z-index: 1000;
+                    }
+
+                    .toast {
+                        background: white;
+                        border-left: 4px solid #28a745;
+                        border-radius: 4px;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                        margin-bottom: 10px;
+                        min-width: 300px;
+                        opacity: 0;
+                        padding: 15px 20px;
+                        transform: translateX(100%);
+                        transition: all 0.3s ease-in-out;
+                    }
+
+                    .toast.show {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+
+                    .toast-header {
+                        color: #28a745;
+                        font-weight: bold;
+                        margin-bottom: 5px;
+                    }
+
+                    .toast-body {
+                        color: #666;
+                    }
+
+                    .toast-close {
+                        position: absolute;
+                        right: 10px;
+                        top: 10px;
+                        background: none;
+                        border: none;
+                        color: #999;
+                        cursor: pointer;
+                    }
+
+                    .toast-close:hover {
+                        color: #666;
+                    }
+                </style>
             </head>
 
             <body class="bg-primary">
@@ -107,9 +157,49 @@
                     </div>
 
                 </div>
+                <div class="toast-container">
+                    <c:if test="${registerSuccess}">
+                        <div class="toast" id="registerToast">
+                            <button class="toast-close" onclick="closeToast()">&times;</button>
+                            <div class="toast-header">
+                                Đăng ký thành công!
+                            </div>
+                            <div class="toast-body">
+                                Vui lòng kiểm tra email ${email} để xác nhận tài khoản của bạn.
+                            </div>
+                        </div>
+                    </c:if>
+                </div>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
                     crossorigin="anonymous"></script>
                 <script src="/js/scripts.js"></script>
+                <script>
+                    // Hiển thị toast khi trang tải xong
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const toast = document.getElementById('registerToast');
+                        if (toast) {
+                            setTimeout(() => {
+                                toast.classList.add('show');
+                            }, 100);
+
+                            // Tự động ẩn toast sau 5 giây
+                            setTimeout(() => {
+                                closeToast();
+                            }, 5000);
+                        }
+                    });
+
+                    // Hàm đóng toast
+                    function closeToast() {
+                        const toast = document.getElementById('registerToast');
+                        if (toast) {
+                            toast.classList.remove('show');
+                            setTimeout(() => {
+                                toast.remove();
+                            }, 300);
+                        }
+                    }
+                </script>
             </body>
 
             </html>

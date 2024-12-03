@@ -36,6 +36,23 @@
                                                         <div class="my-2" style="color: green;">Logout success.
                                                         </div>
                                                     </c:if>
+                                                    <c:if test="${param.verifyError == 'expired'}">
+                                                        <div class="alert alert-danger" role="alert">
+                                                            Liên kết xác thực đã hết hạn. Vui lòng đăng ký lại tài
+                                                            khoản.
+                                                        </div>
+                                                    </c:if>
+                                                    <c:if test="${param.verifySuccess}">
+                                                        <div class="alert alert-success" role="alert">
+                                                            Xác nhận email thành công! Vui lòng đăng nhập để tiếp tục.
+                                                        </div>
+                                                    </c:if>
+                                                    <c:if test="${param.verifyError}">
+                                                        <div class="alert alert-danger" role="alert">
+                                                            Có lỗi xảy ra trong quá trình xác nhận email. Vui lòng thử
+                                                            lại.
+                                                        </div>
+                                                    </c:if>
                                                     <div class="form-floating mb-3">
                                                         <input class="form-control" type="email"
                                                             placeholder="name@example.com" name="username" />

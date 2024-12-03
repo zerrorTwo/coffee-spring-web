@@ -1,6 +1,7 @@
 package com.nghia.coffee_spring_web.domain;
 
 import java.util.List;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +24,8 @@ public class User {
     @Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
 
+    @NotNull
+    @Size(min = 3, message = "Password phải có tối thiểu 3 kí tự")
     private String password;
 
     @NotNull
@@ -33,6 +36,8 @@ public class User {
     private String phone;
 
     private String avatar;
+
+    private boolean confirmEmail;
 
     // roleId
     // User many -> to one -> role
@@ -130,6 +135,15 @@ public class User {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    @Column(name = "confirm_email")
+    public boolean isConfirmEmail() {
+        return confirmEmail;
+    }
+
+    public void setConfirmEmail(boolean confirmEmail) {
+        this.confirmEmail = confirmEmail;
     }
 
 }
