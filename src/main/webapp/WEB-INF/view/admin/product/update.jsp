@@ -21,8 +21,7 @@
                         const avatarFile = $("#avatarFile");
                         const orgImage = "${newProduct.image}";
                         if (orgImage) {
-                            const urlImage = "/images/product/" + orgImage;
-                            $("#avatarPreview").attr("src", urlImage);
+                            $("#avatarPreview").attr("src", orgImage);
                             $("#avatarPreview").css({ "display": "block" });
                         }
 

@@ -74,8 +74,7 @@
                                     <div class="col-lg-6">
                                         <div class="border rounded">
                                             <a href="#">
-                                                <img src="/images/product/${product.image}" class="img-fluid rounded"
-                                                    alt="Image">
+                                                <img src="${product.image}" class="img-fluid rounded" alt="Image">
                                             </a>
                                         </div>
                                     </div>
@@ -84,13 +83,6 @@
                                         <h5 class="fw-bold mb-3">
                                             <fmt:formatNumber type="number" value="${product.price}" /> đ
                                         </h5>
-                                        <div class="d-flex mb-4">
-                                            <i class="fa fa-star text-secondary"></i>
-                                            <i class="fa fa-star text-secondary"></i>
-                                            <i class="fa fa-star text-secondary"></i>
-                                            <i class="fa fa-star text-secondary"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
                                         <p class="mb-4">
                                             ${product.shortDesc}
                                         </p>
@@ -124,49 +116,6 @@
                                         </button>
                                         <!-- </form> -->
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-xl-3">
-                                <div class="row g-4 fruite">
-                                    <div class="col-lg-12">
-
-                                        <div class="mb-4">
-                                            <h4>Categories</h4>
-                                            <ul class="list-unstyled fruite-categorie">
-                                                <li>
-                                                    <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Cappuccino</a>
-                                                        <span>(3)</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Red eye</a>
-                                                        <span>(5)</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Creamy
-                                                            latte</a>
-                                                        <span>(2)</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Mocha</a>
-                                                        <span>(8)</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Americano</a>
-                                                        <span>(5)</span>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
