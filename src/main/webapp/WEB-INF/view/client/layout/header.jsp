@@ -17,7 +17,7 @@
                             <a href="/products" class="nav-item nav-link">Sản Phẩm</a>
                         </div>
 
-                        <form id="searchForm" action="/search" method="GET" class="col-12 col-md-6 col-lg-4">
+                        <form id="searchForm" action="/search" method="GET" class="col-12 col-md-6 col-lg-4 m-0">
                             <div class="input-group">
                                 <input type="text" name="keyword" id="searchInput" class="form-control"
                                     placeholder="Tìm kiếm sản phẩm..." value="${keyword}">

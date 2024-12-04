@@ -177,7 +177,7 @@ public class ItemController {
             // page = 1
         }
 
-        Pageable pageable = PageRequest.of(page - 1, 10);
+        Pageable pageable = PageRequest.of(page - 1, 8);
         Page<Product> prs = this.productService.findAllProducts(pageable);
         List<Product> products = prs.getContent();
 
@@ -198,12 +198,12 @@ public class ItemController {
 
             productPage = this.productService.searchProducts(
                     keyword.trim(), // Cắt khoảng trắng đầu/cuối
-                    PageRequest.of(page - 1, 10));
+                    PageRequest.of(page - 1, 8));
         } else {
             // Nếu không có keyword
             productPage = this.productService.searchProducts(
                     "",
-                    PageRequest.of(page - 1, 10));
+                    PageRequest.of(page - 1, 8));
         }
 
         model.addAttribute("products", productPage.getContent());

@@ -40,7 +40,7 @@ public class OrderController {
             // page = 1
         }
 
-        Pageable pageable = PageRequest.of(page - 1, 3);
+        Pageable pageable = PageRequest.of(page - 1, 4);
         Page<Order> ordersPage = this.orderService.fetchAllOrders(pageable);
         List<Order> orders = ordersPage.getContent();
 
