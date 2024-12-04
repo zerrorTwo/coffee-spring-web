@@ -5,11 +5,15 @@
             <div class="container py-5">
                 <div class="pb-4 mb-4" style="border-bottom: 1px solid rgba(226, 175, 24, 0.5) ;">
                     <div class="row g-4">
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 d-flex align-items-center justify-content-between flex-grow-1">
                             <a href="" target="_blank">
                                 <h1 class="text-primary mb-0">DNCoffee</h1>
                                 <p class="text-secondary mb-0">@dncoffee</p>
                             </a>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4853986116914!2d106.7693328107939!3d10.8506376577755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752763f23816ab%3A0x282f711441b6916f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBTxrAgcGjhuqFtIEvhu7kgdGh14bqtdCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1733325989986!5m2!1svi!2s"
+                                width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>
