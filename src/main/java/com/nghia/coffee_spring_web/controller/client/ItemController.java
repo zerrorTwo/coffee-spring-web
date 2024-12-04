@@ -186,4 +186,37 @@ public class ItemController {
         model.addAttribute("totalPages", prs.getTotalPages());
         return "client/product/show";
     }
+
+    @GetMapping("/search")
+    public String search(
+            @RequestParam(required = false) String keyword,
+            @RequestParam(defaultValue = "1") int page,
+            Model model) {
+
+        Page<Product> productPage;
+        if (keyword != null && !keyword.trim().isEmpty()) {
+
+            productPage = this.productService.searchProducts(
+                    keyword.trim(), // Cắt khoảng trắng đầu/cuối
+                    PageRequest.of(page - 1, 10));
+        } else {
+            // Nếu không có keyword
+            productPage = this.productService.searchProducts(
+                    "",
+                    PageRequest.of(page - 1, 10));
+        }
+
+        model.addAttribute("products", productPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", productPage.getTotalPages());
+        model.addAttribute("keyword", keyword);
+
+        String queryString = "";
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            queryString = "&keyword=" + keyword.trim();
+        }
+        model.addAttribute("queryString", queryString);
+
+        return "client/homepage/show";
+    }
 }
