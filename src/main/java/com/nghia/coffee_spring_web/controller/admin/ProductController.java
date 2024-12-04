@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.nghia.coffee_spring_web.domain.Product;
+import com.nghia.coffee_spring_web.service.CloudinaryService;
 import com.nghia.coffee_spring_web.service.ProductService;
 import com.nghia.coffee_spring_web.service.UploadService;
 
@@ -27,10 +28,13 @@ public class ProductController {
 
     private final ProductService productService;
     private final UploadService uploadService;
+    private final CloudinaryService cloudinaryService;
 
-    public ProductController(ProductService productService, UploadService uploadService) {
+    public ProductController(ProductService productService, UploadService uploadService,
+            CloudinaryService cloudinaryService) {
         this.productService = productService;
         this.uploadService = uploadService;
+        this.cloudinaryService = cloudinaryService;
     }
 
     @GetMapping("/admin/product")
@@ -78,8 +82,9 @@ public class ProductController {
         if (bindingResult.hasErrors()) {
             return "admin/product/create";
         }
-        String image = this.uploadService.handleSaveUploadFile(file, "product");
-        product.setImage(image);
+        // Upload image to Cloudinary
+        String imageUrl = this.cloudinaryService.uploadFile(file);
+        product.setImage(imageUrl);
 
         this.productService.handleSaveAProduct(product);
         return "redirect:/admin/product";
@@ -105,8 +110,8 @@ public class ProductController {
         if (currentProduct != null) {
             // update new image
             if (!file.isEmpty()) {
-                String img = this.uploadService.handleSaveUploadFile(file, "product");
-                currentProduct.setImage(img);
+                String imageUrl = this.cloudinaryService.uploadFile(file);
+                currentProduct.setImage(imageUrl);
             }
 
             currentProduct.setName(product.getName());

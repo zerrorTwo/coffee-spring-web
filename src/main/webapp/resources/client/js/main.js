@@ -244,8 +244,8 @@
             $.toast({
                 heading: 'Lỗi thao tác',
                 text: 'Bạn cần đăng nhập tài khoản',
-                position: 'top-right',
-                icon: 'error'
+                position: 'bottom-right', 
+                icon: 'error',
             })
             return;
         }
@@ -271,7 +271,7 @@
                 $.toast({
                     heading: 'Giỏ hàng',
                     text: 'Thêm sản phẩm vào giỏ hàng thành công',
-                    position: 'top-right',
+                    position: 'bottom-right',
 
                 })
 
@@ -290,8 +290,8 @@
             $.toast({
                 heading: 'Lỗi thao tác',
                 text: 'Bạn cần đăng nhập tài khoản',
-                position: 'top-right',
-                icon: 'error'
+                position: 'bottom-right',
+                icon: 'error',
             })
             return;
         }
@@ -317,7 +317,7 @@
                 $.toast({
                     heading: 'Giỏ hàng',
                     text: 'Thêm sản phẩm vào giỏ hàng thành công',
-                    position: 'top-right',
+                    position: 'bottom-right',
 
                 })
 
