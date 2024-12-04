@@ -45,6 +45,13 @@ public class ProductService {
         this.orderDetailRepository = orderDetailRepository;
     }
 
+    public Page<Product> searchProducts(String keyword, Pageable pageable) {
+        if (keyword != null && !keyword.isEmpty()) {
+            return this.productRepository.findByNameContainingIgnoreCase(keyword, pageable);
+        }
+        return this.productRepository.findAll(pageable);
+    }
+
     public Page<Product> findAllProducts(Pageable page) {
         return this.productRepository.findAll(page);
     }
