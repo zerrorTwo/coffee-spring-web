@@ -5,10 +5,14 @@ Coffee Spring Web là một ứng dụng web được xây dựng bằng Spring 
 
 ## Công nghệ sử dụng
 - Java 17
+- Maven
 - Spring Boot
 - Spring MVC
 - Spring Data JPA
-- Maven
+- Spring Security
+- Java Email
+- Dịch vụ Cloudinary 
+
 
 ## Cài đặt và Chạy ứng dụng
 
@@ -20,15 +24,21 @@ Coffee Spring Web là một ứng dụng web được xây dựng bằng Spring 
 
 1. Clone repository về máy:
 ```bash
-git clone https://github.com/zerrorTwo/coffee-spring-web.git
+git clone https://github.com/nghiakieran/coffee-spring-web.git
 ```
 
 2. Di chuyển vào thư mục dự án:
 ```bash
 cd coffee-spring-web
 ```
-3. Chạy ứng dụng bằng Maven:
+3. Configure database:
+spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/coffeeshop1
+spring.datasource.username=username
+spring.datasource.password=password
+
+4. Chạy ứng dụng bằng Maven:
 ```bash
+mvn clean install
 mvn spring-boot:run
 ```
 
@@ -41,27 +51,14 @@ coffee-spring-web/
 │ │ ├── java/
 │ │ │ └── com/nghia/coffee_spring_web/
 │ │ └── resources/
+| | └── webapp/
 │ └── test/
 ├── pom.xml
 └── README.md
-
-
-## Tính năng chính
-- Quản lý menu đồ uống
-- Quản lý đơn hàng
-- Quản lý khách hàng
-- Thống kê doanh thu
-- Quản lý nhân viên
-
-## Đóng góp
-Mọi đóng góp và góp ý đều được hoan nghênh. Vui lòng tạo pull request hoặc issue để thảo luận về những thay đổi bạn muốn thực hiện.
 
 ## Giấy phép
 [MIT License](LICENSE)
 
 ## Tác giả
-- Nghia
-- Email: namle022004@gmail.com
-
-## Hỗ trợ
-Nếu bạn gặp bất kỳ vấn đề nào, vui lòng tạo issue trong repository hoặc liên hệ trực tiếp với tác giả.
+- Chi Nghia, Quoc Nam
+- Email: lechinghia202@gmail.com
