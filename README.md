@@ -72,7 +72,6 @@ coffee-spring-web/
 - Đăng ký tài khoản mới
   - Điền thông tin cá nhân
   - Xác thực email
-  - Tạo mật khẩu an toàn
 - Đăng nhập vào hệ thống
 - Xem danh sách và chi tiết sản phẩm
   - Tìm kiếm sản phẩm theo tên
@@ -82,38 +81,30 @@ coffee-spring-web/
 
 - Quản lý tài khoản
   - Đăng nhập/Đăng xuất
-  - Cập nhật thông tin cá nhân
-  - Đổi mật khẩu
 - Mua sắm trực tuyến
+  - Xem sản phẩm
+  - Xem lịch sử mua hàng
   - Thêm sản phẩm vào giỏ hàng
   - Chỉnh sửa số lượng sản phẩm
   - Thanh toán đơn hàng
-- Quản lý đơn hàng
-  - Xem lịch sử đơn hàng
-  - Theo dõi trạng thái đơn hàng
-  - Hủy đơn hàng (nếu chưa xử lý)
 
 ### Quản trị viên (Admin)
 
 - Quản lý sản phẩm
   - Thêm/sửa/xóa sản phẩm
   - Quản lý danh mục
-  - Cập nhật giá và tồn kho
 - Quản lý đơn hàng
   - Xem tất cả đơn hàng
-  - Cập nhật trạng thái đơn hàng
-  - Xuất báo cáo bán hàng
+  - Thêm/sửa/xóa đơn hàng
 - Quản lý người dùng
+  -Thêm/sửa/xóa người dùng
   - Xem danh sách khách hàng
-  - Khóa/mở khóa tài khoản
   - Phân quyền người dùng
-- Quản lý nhân viên
-  - Thêm/sửa/xóa thông tin nhân viên
-  - Phân công công việc
-  - Theo dõi hiệu suất
 
 ## Tác giả
 
-- Chi Nghia, Quoc Nam
+- Chi Nghia
 - Email: lechinghia202@gmail.com
+
+- Quoc Nam
 - Email: namle022004@gmail.com
